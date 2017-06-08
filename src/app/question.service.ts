@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 import {Question} from './question';
 import 'rxjs/add/operator/map';
-
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class QuestionService {
@@ -31,6 +32,25 @@ export class QuestionService {
     return this.http.get('/api/v1/questions/count')
       .map(this.extractData)
         .catch(this.handleError);
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
+  }
+
+  private handleError (error: Response | any) {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
   /*updateQuestion(id:string,newQuestion:any){
     var url_string = 'http://localhost:3000/api/v1/questions/'+ id;
