@@ -12,20 +12,22 @@ export class QuestionService {
   //retrieving questions
   getQuestions(pageNumber, limit){
     var url2 = '/api/v1/questions?limit='+limit+'&page='+pageNumber;
-    return this.http.get(url2).map(
-      res => res.json());
+    return this.http.get(url2) .map(this.extractData)
+        .catch(this.handleError);
   }
 
   addQuestion(newQuestion){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('/api/v1/questions', newQuestion,{headers: headers})
-      .map(res => res.json());
+       .map(this.extractData)
+        .catch(this.handleError);
   }
 
   deleteQuestion(id){
     return this.http.delete('/api/v1/questions/'+id)
-      .map(res=>res.json());
+      .map(this.extractData)
+        .catch(this.handleError);
   }
 
   getCount(){
