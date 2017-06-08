@@ -8,10 +8,10 @@ import 'rxjs/add/operator/map';
 export class QuestionService {
 
   constructor(private http: Http) { }
-
+  const uri = 
   //retrieving questions
   getQuestions(pageNumber, limit){
-    var url2 = 'http://localhost:3000/api/v1/questions?limit='+limit+'&page='+pageNumber;
+    var url2 = '/api/v1/questions?limit='+limit+'&page='+pageNumber;
     return this.http.get(url2).map(
       res => res.json());
   }
@@ -19,17 +19,17 @@ export class QuestionService {
   addQuestion(newQuestion){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/api/v1/questions', newQuestion,{headers: headers})
+    return this.http.post('/api/v1/questions', newQuestion,{headers: headers})
       .map(res => res.json());
   }
 
   deleteQuestion(id){
-    return this.http.delete('http://localhost:3000/api/v1/questions/'+id)
+    return this.http.delete('/api/v1/questions/'+id)
       .map(res=>res.json());
   }
 
   getCount(){
-    return this.http.get('http://localhost:3000/api/v1/questions/count')
+    return this.http.get('/api/v1/questions/count')
       .map(res=>res.json());
   }
   /*updateQuestion(id:string,newQuestion:any){
