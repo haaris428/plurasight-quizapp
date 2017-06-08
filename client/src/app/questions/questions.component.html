@@ -1,0 +1,71 @@
+<div class="container" [hidden] = "!addButtonShowcontent">
+  <h2 class="page-header"> Questions List </h2>
+  <form (submit) = "addQuestion()">
+    <div class="form-group">
+      <label>Question Text</label>
+      <input type= "text" [(ngModel)] = "question_text" name="question_text" class="form-control"required>
+    </div>
+    <div class="form-group">
+      <label>Answer</label>
+      <input type= "text" [(ngModel)] = "answer" name="answer" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Distractions (Comma Separated List e.g 123,321,222)</label>
+      <input type= "text" [(ngModel)] = "distractions" name="distractions" class="form-control" required>
+    </div>
+    <div>
+    <input type= "Submit" value="Submit" class="btn btn-success btn-xs pull-right">
+    </div>
+  </form>
+
+
+  <div class="container">
+    <input type="button" (click) = "cancelAddQuestionForm()" value = "Cancel" class= "btn  btn-warning btn-xs pull-right" >
+  </div>
+</div>
+
+<hr>
+<div class="container">
+  <input type="button" (click) = "showAddQuestionForm()" value = "Add Question" class= "btn  btn-primary btn-xs" >
+</div>
+
+<div class="container">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1,10)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1,10)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page,10)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1,10)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages,10)">Last</a>
+                </li>
+    </ul>
+  <div *ngFor = "let question of pagedItems; let i = index">
+    <div class="col-md-6">
+      Q{{i+1}}. {{question.question_text}}
+    </div>
+    <div class="col-md-6">
+      <input type="button" (click) = "deleteQuestion(question._id)" value = "Remove" class= "btn  btn-danger btn-xs" >
+    </div>
+    <!--<div class="col-md-3">
+      <input type="button" (click) = "updateQuestion(question._id)" value = "Edit" class= "btn  btn-primary btn-xs" >
+    </div>-->
+    <ul class = "col-sm-12" >
+      <li>
+        <span class="title">Answer: </span>
+        <span>{{question.answer}}</span>
+      </li>
+      <li>Distractions: {{question.distractions}}</li>
+    </ul>
+    <div class="col-sm-12">
+      &nbsp;
+    </div>
+  </div>
+</div>
