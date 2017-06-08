@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 export class QuestionService {
 
   constructor(private http: Http) { }
-  const uri = 
   //retrieving questions
   getQuestions(pageNumber, limit){
     var url2 = '/api/v1/questions?limit='+limit+'&page='+pageNumber;

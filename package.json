@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "plurasight homework assignment",
   "main": "app.js",
-  "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "node app.js",
@@ -11,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng serve --aot -prod"
+    "postinstall": "ng build"
   },
   "author": "Haaris Ghafoor",
   "license": "ISC",
