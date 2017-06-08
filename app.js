@@ -3,19 +3,23 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
-
+var config = require('./config');
 var app = express();
-const port = 3000;
+const port = config.server_port;
+const server_name = config.server_name;
+const mongodb_server = config.mongodb.server_name;
+const mongodb_port = config.mongodb.port;
+
 const route = require('./routes/route');
 //adding middleware
 app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
-mongoose.connect('mongodb://localhost:27017/questionaire')
+mongoose.connect("mongodb://" + mongodb_server + ":" + mongodb_port + "/questionaire");
 
 mongoose.connection.on('connected',()=>{
-  console.log('Connected to the Database mongodb @ 27017');
+  console.log('Connected to the Database mongodb @ ' + mongodb_port);
 });
 
 mongoose.connection.on('error',(err)=>{
