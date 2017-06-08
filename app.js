@@ -12,6 +12,11 @@ const mongodb_server = config.mongodb.server_name;
 
 const route = require('./routes/route');
 //adding middleware
+
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
+
 app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname,'public')));
@@ -32,3 +37,4 @@ app.use('/api/v1', route);
 app.listen(port,()=>{
   console.log('Server started at port: ' + port);
 });
+
