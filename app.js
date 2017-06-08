@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname,'public')));
 mongoose.connect("mongodb://" + mongodb_server + ":" + mongodb_port + "/questionaire");
 
 mongoose.connection.on('connected',()=>{
-  console.log('Connected to the Database mongodb @ ' + mongodb_port);
+  console.log('Connected to the Database mongodb @ ');
 });
 
 mongoose.connection.on('error',(err)=>{
