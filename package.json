@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "plurasight homework assignment",
   "main": "app.js",
+  "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "node app.js",
