@@ -8,7 +8,7 @@ var app = express();
 const port = config.server_port;
 const server_name = config.server_name;
 const mongodb_server = config.mongodb.server_name;
-const mongodb_port = config.mongodb.port;
+
 
 const route = require('./routes/route');
 //adding middleware
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
-mongoose.connect(mongodb_server);
+mongoose.connect(mongodb_server,{auth:{authdb:"admin"}});
 
 mongoose.connection.on('connected',()=>{
   console.log('Connected to the Database mongodb @ ');
