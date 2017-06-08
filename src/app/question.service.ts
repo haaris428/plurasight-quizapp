@@ -29,7 +29,8 @@ export class QuestionService {
 
   getCount(){
     return this.http.get('/api/v1/questions/count')
-      .map(res=>res.json());
+      .map(this.extractData)
+        .catch(this.handleError);
   }
   /*updateQuestion(id:string,newQuestion:any){
     var url_string = 'http://localhost:3000/api/v1/questions/'+ id;
