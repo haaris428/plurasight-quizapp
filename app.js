@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
-mongoose.connect("mongodb://" + mongodb_server + ":" + mongodb_port + "/questionaire");
+mongoose.connect(mongodb_server);
 
 mongoose.connection.on('connected',()=>{
   console.log('Connected to the Database mongodb @ ');
