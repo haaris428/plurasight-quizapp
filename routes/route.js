@@ -4,7 +4,7 @@ const Question = require('../models/questions');
 
 //gets
 router.get('/',(req,resp, next) =>{
-  resp.send("foobar");
+  resp.json({"size": "count"});
 });
 
 router.get('/questions/count',(req,resp,next) =>{
