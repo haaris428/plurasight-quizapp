@@ -19,7 +19,12 @@ router.get('/questions',(req,resp,next) =>{
   let limit = req.query.limit || 25;
   let page = req.query.page || 1;
   Question.find(function(err, questions) {
-    resp.json(questions)
+    if (err) {
+      resp.json({msg:"Error adding new Question " + err});
+    }
+    else {
+      resp.json(questions)
+    }
   }).skip(limit*(page-1)).limit(limit).sort({createdOn: -1});
 });
 
