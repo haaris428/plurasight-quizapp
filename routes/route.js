@@ -20,12 +20,12 @@ router.get('/questions',(req,resp,next) =>{
   let page = req.query.page || 1;
   Question.find(function(err, questions) {
     if (err) {
-      resp.json({msg:"Error adding new Question " + err});
+      resp.json({msg:"Error retrieving Questions: " + err});
     }
     else {
       resp.json(questions)
     }
-  }).skip(limit*(page-1)).limit(limit).sort({createdOn: -1});
+  }).skip(Number(limit)*(page-1)).limit(Number(limit)).sort({createdOn: -1});
 });
 
 router.get('/questions/:id',(req,resp,next) =>{
