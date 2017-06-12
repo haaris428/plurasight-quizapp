@@ -1,31 +1,100 @@
-# Client
+# HomeWork
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+### EndPoints
+Following Apis Are Supported
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### GET ALL QUESTIONS:
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions
+**Verb**: GET
+**Description**: Gets all Questions From the Server (The limit imposed by API is of 25 Per Page)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+### ADD, DELETE OR UPDATE:
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions/
+**Verb**: POST
+**Description**: Add a Question
+***Sample Body**:
+~~~~{
+    "question_text": "What is 3166 - 18321?",
+    "answer": "1334",
+    "distractions": [
+      "8215",
+      "2396",
+      "7115",
+      "3279"
+    ]
+  } 
+  ~~~~
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions/:id
+**Verb**: DELETE
+**Description**: Delete a question from the server
 
-## Build
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions/:id
+**Verb**: PUT
+**Description**: Update a question
+***Sample Body**:
+~~~~{
+    "question_text": "What is 3166 - 18321?",
+    "answer": "1334",
+    "distractions": [
+      "8215",
+      "2396",
+      "7115",
+      "3279"
+    ]
+  } 
+  ~~~~
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+### Pagination
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions?limit=10&page=1
+**Verb**: GET
+**Description**: Get Paginated Results from the Server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Sort
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions?limit=10&page=1&sortby=createdOn
+**Verb**: GET
+**Description**: Get Results Sorted by Created On Date
 
-## Running end-to-end tests
+### Search/Filter
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions/search
+**Verb**: POST
+**Sample Body**: {"search": "8967"}
+**Description**: Get Paginated Results from the Server
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+### Count
+**API**: https://plurasight-quizapp.herokuapp.com/api/v1/questions/count
+**Verb**: GET
+**Description**: Get Count of Questions in the DB
 
-## Deploying to GitHub Pages
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+### Summary
+Following design decisions were made keeping in view that this was a homework task meant for prototyping:
 
-## Further help
+  - Using Node JS to quickly prototype a RESTful Server 
+  - Keeping FrontEnd simple in AngularJS and only implementing key functionalities
+  - Using MongoDB as DB, utilizing its skip, limit and indexing functionality to introduce pagination and filtering
+  - Indexing Questions on CreatedOn date only, hence only allowing sorting on CreatedOn date
+  - Pagination, Filtering and Sorting were done all on backend to reduce network traffic
 
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+### Limitaions and Room For Improvement
+
+Currently FrontEnd was kept as simple as possible. A search bar can be added, so can editting component, as well as allowing users to sort by a field of there choice (dont see a point in sorting questions by text)
+
+Unit Test functionality can be added to both frontend and backend, due to limitation in time and simplicity of the backend server, I skipped right into coding.
+
+As a part of this task, I was trying to get more familiar with both angular and heroku by picking up a brand new technology and getting my hands dirty in them
+
+A functional test suite can be added in robot to test api backends
+
+### Hosting
+App is hosted on heroku
+
+### Local Deployment:
+
+To locally run this app there needs to be a mongodb installed.
+Run importdata.py helper script to load mongodb (make sure to provide right credentials)
+
+
+

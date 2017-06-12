@@ -2,11 +2,6 @@ const express = require ('express')
 const router = express.Router();
 const Question = require('../models/questions');
 
-//gets
-router.get('/',(req,resp, next) =>{
-  resp.json({"size": "count"});
-});
-
 router.get('/questions/count',(req,resp,next) =>{
  Question.count({},function(err, count) {
    let return_obj = {"size": count}
