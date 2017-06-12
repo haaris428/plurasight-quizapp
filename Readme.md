@@ -96,5 +96,9 @@ App is hosted on heroku
 To locally run this app there needs to be a mongodb installed.
 Run importdata.py helper script to load mongodb (make sure to provide right credentials)
 
+Following 2 indexes need to be created on MongoDB
+Indexes: createdOn Descending and Text index on question_text
+
+
 
 
