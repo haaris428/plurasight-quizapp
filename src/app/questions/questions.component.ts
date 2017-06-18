@@ -17,7 +17,7 @@ export class QuestionsComponent implements OnInit {
   question: Question;
   question_text: string;
   answer: string;
-  distractions: string[];
+  distractions: string;
   pager: any = {};
   pagedItems: any = [];
   totalItems: number;
@@ -63,7 +63,7 @@ export class QuestionsComponent implements OnInit {
       const Question = {
         question_text: this.question_text,
         answer: this.answer,
-        distractions: this.distractions[0].split(",")
+        distractions: this.distractions.split(",")
       }
       this.questionService.addQuestion(Question)
         .subscribe(question => {
